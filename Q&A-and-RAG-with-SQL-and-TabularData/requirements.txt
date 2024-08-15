@@ -10,4 +10,3 @@ python-dotenv
 PyYAML
 SQLAlchemy
 openai
-
