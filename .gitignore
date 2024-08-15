@@ -123,3 +123,11 @@ condaenv.*
 .mypy_cache/
 
 .DS_Store
+
+#venv 
+csv-agent-env
+
+
+# sql
+clinical_trials
+main
