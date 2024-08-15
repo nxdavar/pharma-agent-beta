@@ -1,7 +1,6 @@
 gradio
 langchain
 langchain_openai
-chromadb
 langchain_community
 langchain_core
 pandas

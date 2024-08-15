@@ -125,9 +125,10 @@ condaenv.*
 .DS_Store
 
 #venv 
-csv-agent-env
-
+Q&A-and-RAG-with-SQL-and-TabularData/csv-agent-env/*
+Q&A-and-RAG-with-SQL-and-TabularData/csv-agent-env
 
 # sql
 clinical_trials
 main
+utils/__pycache__/*

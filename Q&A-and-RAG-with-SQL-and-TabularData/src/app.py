@@ -53,7 +53,5 @@ with gr.Blocks() as demo:
                                                      chatbot],
                                             queue=False).then(lambda: gr.Textbox(interactive=True),
                                                               None, [input_txt], queue=False)
-
-
 if __name__ == "__main__":
     demo.launch()
