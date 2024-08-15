@@ -1,5 +1,4 @@
 import gradio as gr
-from utils.upload_file import UploadFile
 from utils.chatbot import ChatBot
 from utils.ui_settings import UISettings
 

@@ -40,8 +40,22 @@ class ChatBot:
                                              Currently, the function primarily updates the chatbot conversation list.
         """
 
-        # If we want to use langchain agents for Q&A with our SQL DBs that was created from .sql files.
-        # If we want to use langchain agents for Q&A with our SQL DBs that were created from CSV/XLSX files.
+        template = '''Given an input question, first create a syntactically correct {dialect} query to run, then look at the results of the query and return the answer.
+            Use the following format:
+
+            Question: "Question here"
+            SQLQuery: "SQL Query to run"
+            SQLResult: "Result of the SQLQuery"
+            Answer: "Final answer here"
+
+            Only use the following tables:
+
+            {table_info}.
+
+            Question: {input}'''
+        prompt = PromptTemplate.from_template(template)
+
+
 
         if os.path.exists(APPCFG.stored_csv_xlsx_sqldb_directory):
             engine = create_engine(
@@ -54,7 +68,7 @@ class ChatBot:
         print(db.dialect)
         print(db.get_usable_table_names())
         agent_executor = create_sql_agent(
-            APPCFG.langchain_llm, db=db, agent_type="openai-tools", verbose=True, )
+            APPCFG.langchain_llm, db=db, agent_type="openai-tools", verbose=True, top_k=APPCFG.top_k)
         response = agent_executor.invoke({"input": message})
         response = response["output"]
 
