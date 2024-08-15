@@ -5,7 +5,6 @@ import yaml
 from pyprojroot import here
 import shutil
 from langchain_openai import ChatOpenAI
-import chromadb
 
 print("Environment variables are loaded:", load_dotenv())
 
@@ -18,8 +17,7 @@ class LoadConfig:
         self.load_directories(app_config=app_config)
         self.load_llm_configs(app_config=app_config)
         self.load_openai_models()
-        self.load_chroma_client()
-        self.load_rag_config(app_config=app_config)
+        self.top_k = app_config["rag_config"]["top_k"]
 
         # Un comment the code below if you want to clean up the upload csv SQL DB on every fresh run of the chatbot. (if it exists)
         # self.remove_directory(self.uploaded_files_sqldb_directory)
@@ -52,13 +50,8 @@ class LoadConfig:
             model_name=self.model_name,
             temperature=self.temperature)
 
-    def load_chroma_client(self):
-        self.chroma_client = chromadb.PersistentClient(
-            path=str(here(self.persist_directory)))
 
-    def load_rag_config(self, app_config):
-        self.collection_name = app_config["rag_config"]["collection_name"]
-        self.top_k = app_config["rag_config"]["top_k"]
+
 
     def remove_directory(self, directory_path: str):
         """

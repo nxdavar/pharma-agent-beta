@@ -18,4 +18,4 @@ llm_config:
 
 rag_config:
   collection_name: titanic_small
-  top_k: 10
+  top_k: 20
